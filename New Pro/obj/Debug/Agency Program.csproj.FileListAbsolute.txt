@@ -1,0 +1,14 @@
+C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\Agency Program.csproj.AssemblyReference.cache
+C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\New_Pro.Form1.resources
+C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\Agency Program.csproj.GenerateResource.cache
+C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\Agency Program.csproj.CoreCompileInputs.cache
+C:\Users\phamv\source\repos\New Pro\New Pro\bin\Debug\AgencyProgram.exe.config
+C:\Users\phamv\source\repos\New Pro\New Pro\bin\Debug\AgencyProgram.exe.manifest
+C:\Users\phamv\source\repos\New Pro\New Pro\bin\Debug\AgencyProgram.application
+C:\Users\phamv\source\repos\New Pro\New Pro\bin\Debug\AgencyProgram.exe
+C:\Users\phamv\source\repos\New Pro\New Pro\bin\Debug\AgencyProgram.pdb
+C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\AgencyProgram.exe.manifest
+C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\AgencyProgram.application
+C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\AgencyProgram.exe
+C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\AgencyProgram.pdb
+C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\AgencyProgram.Properties.Resources.resources
