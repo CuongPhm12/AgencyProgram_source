@@ -216,10 +216,12 @@ namespace New_Pro
 
                 }
 
+                //when task fisnish, show messagebox and auto close it after 20s
 
+                (new System.Threading.Thread(CloseIt)).Start();
                 MessageBox.Show("Data update and insert completed.");
 
-         
+
             }
             catch (Exception ex)
             {
@@ -237,12 +239,18 @@ namespace New_Pro
 
         }
 
+        private void CloseIt()
+        {
+            System.Threading.Thread.Sleep(20000);
+            Microsoft.VisualBasic.Interaction.AppActivate(
+                 System.Diagnostics.Process.GetCurrentProcess().Id);
+            System.Windows.Forms.SendKeys.SendWait(" ");
+        }
+
         private void Form1_Load_1(object sender, EventArgs e)
         {
             System.Threading.Timer timer = new System.Threading.Timer(new System.Threading.TimerCallback(MyIntervalFunction));
-            timer.Change(0, 300000);
+            timer.Change(0, 3600000);
         }
-
-
     }
 }

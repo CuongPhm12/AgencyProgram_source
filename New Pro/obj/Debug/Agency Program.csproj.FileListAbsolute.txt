@@ -12,3 +12,17 @@ C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\AgencyProgram.application
 C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\AgencyProgram.exe
 C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\AgencyProgram.pdb
 C:\Users\phamv\source\repos\New Pro\New Pro\obj\Debug\AgencyProgram.Properties.Resources.resources
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\bin\Debug\AgencyProgram.exe.config
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\bin\Debug\AgencyProgram.exe.manifest
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\bin\Debug\AgencyProgram.application
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\bin\Debug\AgencyProgram.exe
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\bin\Debug\AgencyProgram.pdb
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\Agency Program.csproj.AssemblyReference.cache
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\New_Pro.Form1.resources
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\AgencyProgram.Properties.Resources.resources
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\Agency Program.csproj.GenerateResource.cache
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\Agency Program.csproj.CoreCompileInputs.cache
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\AgencyProgram.exe.manifest
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\AgencyProgram.application
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\AgencyProgram.exe
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\AgencyProgram.pdb
