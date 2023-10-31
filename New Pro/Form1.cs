@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,9 +14,11 @@ namespace New_Pro
         public Form1()
         {
             InitializeComponent();
+            label2.Visible = false;
         }
 
-        private void MyIntervalFunction(object obj)
+        //private void MyIntervalFunction(object obj)
+        private void MyIntervalFunction()
         {
             // Source database connection string
             string sourceConnectionString;
@@ -216,10 +213,9 @@ namespace New_Pro
 
                 }
 
-                //when task fisnish, show messagebox and auto close it after 20s
 
-                (new System.Threading.Thread(CloseIt)).Start();
-                MessageBox.Show("Data update and insert completed.");
+                // Showing label2 and hiding it after 20 seconds
+                UpdateLabelVisibility();
 
 
             }
@@ -239,18 +235,34 @@ namespace New_Pro
 
         }
 
-        private void CloseIt()
+        private void UpdateLabelVisibility()
         {
-            System.Threading.Thread.Sleep(20000);
-            Microsoft.VisualBasic.Interaction.AppActivate(
-                 System.Diagnostics.Process.GetCurrentProcess().Id);
-            System.Windows.Forms.SendKeys.SendWait(" ");
+            // Use Invoke to ensure that the UI update runs on the UI thread
+            Invoke((MethodInvoker)delegate
+            {
+                label2.Visible = true;
+            });
+
+            Task.Delay(20000).ContinueWith(_ =>
+            {
+                Invoke((MethodInvoker)delegate
+                {
+                    label2.Visible = false;
+                });
+            });
         }
+
+
 
         private void Form1_Load_1(object sender, EventArgs e)
         {
-            System.Threading.Timer timer = new System.Threading.Timer(new System.Threading.TimerCallback(MyIntervalFunction));
-            timer.Change(0, 3600000);
+            //System.Threading.Timer timer = new System.Threading.Timer(new System.Threading.TimerCallback(MyIntervalFunction));
+            //timer.Change(0, 3600000);
+            //Thread.Sleep(10000);
+            MyIntervalFunction();
+            //Thread.Sleep(50000);
+            Application.Exit();
         }
+        
     }
 }
