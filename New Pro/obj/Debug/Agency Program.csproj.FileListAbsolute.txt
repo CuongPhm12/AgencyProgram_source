@@ -26,3 +26,4 @@ F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\AgencyProgram.exe
 F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\AgencyProgram.application
 F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\AgencyProgram.exe
 F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\AgencyProgram.pdb
+F:\Cuong\Agency Program\AgencyProgram_source\New Pro\obj\Debug\Agency Program.csproj.SuggestedBindingRedirects.cache

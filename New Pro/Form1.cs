@@ -43,10 +43,13 @@ namespace New_Pro
 
                 // Select data from the source table
                 string selectQuery = "select co_cd, in_dt, in_sq, ";
-                selectQuery += "isu_dt , isu_sq ";
-                selectQuery += "from AUTODOCU_SIMPLE ";
-                selectQuery += "where isu_dt + convert(nvarchar(10), isu_sq) <> '000000000' ";
-                selectQuery += "And logic_cd in ('2','3') ";
+                selectQuery       += "isu_dt , isu_sq ";
+                selectQuery       += "from AUTODOCU_SIMPLE ";
+                selectQuery       += "where isu_dt + convert(nvarchar(10), isu_sq) <> '000000000' ";
+                selectQuery       += "And logic_cd in ('2','3')  ";
+                selectQuery       += "And CONVERT(CHAR(8), MODIFY_DT,112) >='" + DateTime.Now.AddDays(-30).ToString("yyyyMMdd") + "'";
+                selectQuery       += "And CONVERT(CHAR(8), IN_DT ,112) >= '20231001'";
+
 
                 SqlCommand selectCommand = new SqlCommand(selectQuery, sourceConnection);
                 SqlDataAdapter adapter = new SqlDataAdapter(selectCommand);
@@ -62,13 +65,14 @@ namespace New_Pro
                 // Loop through the retrieved data and update the destination table
                 foreach (DataRow row in sourceData.Rows)
                 {
+                    sourceData.Rows.IndexOf(row);
                     #region Update if_status = 'A' in IF_AUTODOCU_SIMPLE of Innotech DB
 
                     // Check  exists in the IF_AUTODOCU_SIMPLE table
                     string checkExistQuery = "SELECT COUNT(1) FROM IF_AUTODOCU_SIMPLE WHERE co_cd = @Value1 ";
-                    checkExistQuery += "AND  in_dt = @Value2 ";
-                    checkExistQuery += "AND  in_sq = @Value3 ";
-                    checkExistQuery += "AND if_status <> 'A' ";
+                    checkExistQuery       += "AND  in_dt = @Value2 ";
+                    checkExistQuery       += "AND  in_sq = @Value3 ";
+                    checkExistQuery       += "AND if_status <> 'A' ";
                     SqlCommand checkExistCommand = new SqlCommand(checkExistQuery, destinationConnection);
                     checkExistCommand.Parameters.AddWithValue("@Value1", row["co_cd"]);
                     checkExistCommand.Parameters.AddWithValue("@Value2", row["in_dt"]);
@@ -79,8 +83,8 @@ namespace New_Pro
                     {
                         // Update data in the IF_AUTODOCU_SIMPLE table
                         string updateQuery = "UPDATE IF_AUTODOCU_SIMPLE SET if_status = 'A' WHERE co_cd = @Value1 ";
-                        updateQuery += "AND  in_dt = @Value2 ";
-                        updateQuery += "AND  in_sq = @Value3 ";
+                        updateQuery       += "AND  in_dt = @Value2 ";
+                        updateQuery       += "AND  in_sq = @Value3 ";
 
                         SqlCommand updateCommand = new SqlCommand(updateQuery, destinationConnection);
                         updateCommand.Parameters.AddWithValue("@Value1", row["co_cd"]);
@@ -96,9 +100,9 @@ namespace New_Pro
 
                         // Check  exists in the tb_sl_sale_detai table
                         string checkExistQuery1 = "SELECT COUNT(1) FROM IF_AUTODOCU_SIMPLE WHERE logic_cd = '2' ";
-                        checkExistQuery1 += "AND in_dt = @Value2 ";
-                        checkExistQuery1 += "AND  in_sq = @Value3 ";
-                        checkExistQuery1 += "AND if_status = 'A' ";
+                        checkExistQuery1       += "AND in_dt = @Value2 ";
+                        checkExistQuery1       += "AND  in_sq = @Value3 ";
+                        checkExistQuery1       += "AND if_status = 'A' ";
                         SqlCommand checkExistCommand1 = new SqlCommand(checkExistQuery1, destinationConnection);
                         checkExistCommand1.Parameters.AddWithValue("@Value2", row["in_dt"]);
                         checkExistCommand1.Parameters.AddWithValue("@Value3", row["in_sq"]);
@@ -106,8 +110,8 @@ namespace New_Pro
 
                         // Check  exists in the destination table
                         string checkExistQuery2 = "SELECT COUNT(1) FROM tb_pur_handle_stock_in_detail WHERE progress_status = 'interface' ";
-                        checkExistQuery2 += "AND in_dt = @Value2 ";
-                        checkExistQuery2 += "AND  in_sq = @Value3 ";
+                        checkExistQuery2       += "AND in_dt = @Value2 ";
+                        checkExistQuery2       += "AND  in_sq = @Value3 ";
    
                         SqlCommand checkExistCommand2 = new SqlCommand(checkExistQuery2, destinationConnection);
                         checkExistCommand2.Parameters.AddWithValue("@Value2", row["in_dt"]);
@@ -117,14 +121,15 @@ namespace New_Pro
                         if (existingRecordCount1 > 0&& existingRecordCount2 > 0)
                         {
                             string insertQuery = "UPDATE tb_pur_handle_stock_in_detail  SET progress_status = 'completed'  ";
-                            insertQuery += "WHERE in_dt = @Value2 ";
-                            insertQuery += "AND  in_sq = @Value3 ";
+                            insertQuery       += "WHERE in_dt = @Value2 ";
+                            insertQuery       += "AND  in_sq = @Value3 ";
                             using (SqlCommand insertCommand = new SqlCommand(insertQuery, destinationConnection))
                             {
                                 insertCommand.Parameters.AddWithValue("@Value2", row["in_dt"]);
                                 insertCommand.Parameters.AddWithValue("@Value3", row["in_sq"]);
                                 insertCommand.ExecuteNonQuery();
                             }
+                            continue;
                         }
              
                         #endregion
@@ -163,6 +168,7 @@ namespace New_Pro
                                 insertCommand.Parameters.AddWithValue("@Value3", row["in_sq"]);
                                 insertCommand.ExecuteNonQuery();
                             }
+                            continue;
                         }
              
                         #endregion
@@ -171,17 +177,17 @@ namespace New_Pro
 
                         // Check  exists in the tb_sl_sale_detai table
                         string checkExistQuery5 = "SELECT COUNT(1) FROM IF_AUTODOCU_SIMPLE WHERE isu_doc LIKE '수출매출%' AND logic_cd = '3' ";
-                        checkExistQuery5 += "AND in_dt = @Value2 ";
-                        checkExistQuery5 += "AND  in_sq = @Value3 ";
-                        checkExistQuery5 += "AND if_status = 'A' ";
+                        checkExistQuery5       += "AND in_dt = @Value2 ";
+                        checkExistQuery5       += "AND  in_sq = @Value3 ";
+                        checkExistQuery5       += "AND if_status = 'A' ";
                         SqlCommand checkExistCommand5 = new SqlCommand(checkExistQuery5, destinationConnection);
                         checkExistCommand5.Parameters.AddWithValue("@Value2", row["in_dt"]);
                         checkExistCommand5.Parameters.AddWithValue("@Value3", row["in_sq"]);
                         int existingRecordCount5 = (int)checkExistCommand5.ExecuteScalar();
 
                         string checkExistQuery6 = "SELECT COUNT(1) FROM tb_sl_bl_export_detail WHERE progress_status = 'interface' ";
-                        checkExistQuery6 += "AND in_dt = @Value2 ";
-                        checkExistQuery6 += "AND  in_sq = @Value3 ";
+                        checkExistQuery6       += "AND in_dt = @Value2 ";
+                        checkExistQuery6       += "AND  in_sq = @Value3 ";
 
                         SqlCommand checkExistCommand6 = new SqlCommand(checkExistQuery6, destinationConnection);
                         checkExistCommand6.Parameters.AddWithValue("@Value2", row["in_dt"]);
@@ -192,14 +198,15 @@ namespace New_Pro
                         {
 
                             string insertQuery = "UPDATE tb_sl_bl_export_detail SET progress_status = 'completed'  ";
-                            insertQuery += "WHERE in_dt = @Value2 ";
-                            insertQuery += "AND  in_sq = @Value3 ";
+                            insertQuery       += "WHERE in_dt = @Value2 ";
+                            insertQuery       += "AND  in_sq = @Value3 ";
                             using (SqlCommand insertCommand = new SqlCommand(insertQuery, destinationConnection))
                             {
                                 insertCommand.Parameters.AddWithValue("@Value2", row["in_dt"]);
                                 insertCommand.Parameters.AddWithValue("@Value3", row["in_sq"]);
                                 insertCommand.ExecuteNonQuery();
                             }
+                            continue;
                         }
           
                         #endregion
