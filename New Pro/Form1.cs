@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace New_Pro
 {
@@ -30,7 +31,8 @@ namespace New_Pro
 
             SqlConnection sourceConnection = null;
             SqlConnection destinationConnection = null;
-
+            string _log = DateTime.Now.ToString() + Environment.NewLine;
+            File.AppendAllText("C://backup//backup_log.txt", _log);
 
 
             try
@@ -73,6 +75,7 @@ namespace New_Pro
                     checkExistQuery       += "AND  in_dt = @Value2 ";
                     checkExistQuery       += "AND  in_sq = @Value3 ";
                     checkExistQuery       += "AND if_status <> 'A' ";
+
                     SqlCommand checkExistCommand = new SqlCommand(checkExistQuery, destinationConnection);
                     checkExistCommand.Parameters.AddWithValue("@Value1", row["co_cd"]);
                     checkExistCommand.Parameters.AddWithValue("@Value2", row["in_dt"]);
@@ -91,6 +94,10 @@ namespace New_Pro
                         updateCommand.Parameters.AddWithValue("@Value2", row["in_dt"]);
                         updateCommand.Parameters.AddWithValue("@Value3", row["in_sq"]);
 
+                        _log = string.Format("UPDATE IF_AUTODOCU_SIMPLE SET if_status = 'A' WHERE co_cd = {0} AND  in_dt = {1} AND  in_sq = {2}  ", row["co_cd"], row["in_dt"], row["in_sq"]);
+                        _log += Environment.NewLine;
+                        File.AppendAllText("C://backup//backup_log.txt", _log);
+                        _log += Environment.NewLine;
                         updateCommand.ExecuteNonQuery();
                         #endregion
 
@@ -123,6 +130,10 @@ namespace New_Pro
                             string insertQuery = "UPDATE tb_pur_handle_stock_in_detail  SET progress_status = 'completed'  ";
                             insertQuery       += "WHERE in_dt = @Value2 ";
                             insertQuery       += "AND  in_sq = @Value3 ";
+
+                            _log = string.Format("UPDATE tb_pur_handle_stock_in_detail  SET progress_status = 'completed' WHERE in_dt = {0} AND  in_sq = {1} ", row["in_dt"], row["in_sq"]);
+                            _log += Environment.NewLine;
+                            File.AppendAllText("C://backup//backup_log.txt", _log);
                             using (SqlCommand insertCommand = new SqlCommand(insertQuery, destinationConnection))
                             {
                                 insertCommand.Parameters.AddWithValue("@Value2", row["in_dt"]);
@@ -162,6 +173,10 @@ namespace New_Pro
                             string insertQuery = "UPDATE tb_sl_sale_detail  SET progress_status = 'completed'  ";
                             insertQuery += "WHERE in_dt = @Value2 ";
                             insertQuery += "AND  in_sq = @Value3 ";
+
+                            _log = string.Format("UPDATE tb_sl_sale_detail  SET progress_status = 'completed' WHERE in_dt = {0} AND  in_sq = {1} ", row["in_dt"], row["in_sq"]);
+                            _log += Environment.NewLine;
+                            File.AppendAllText("C://backup//backup_log.txt", _log);
                             using (SqlCommand insertCommand = new SqlCommand(insertQuery, destinationConnection))
                             {
                                 insertCommand.Parameters.AddWithValue("@Value2", row["in_dt"]);
@@ -200,6 +215,10 @@ namespace New_Pro
                             string insertQuery = "UPDATE tb_sl_bl_export_detail SET progress_status = 'completed'  ";
                             insertQuery       += "WHERE in_dt = @Value2 ";
                             insertQuery       += "AND  in_sq = @Value3 ";
+
+                            _log = string.Format("UPDATE tb_sl_sale_detail  SET progress_status = 'completed' WHERE in_dt = {0} AND  in_sq = {1} ", row["in_dt"], row["in_sq"]);
+                            _log += Environment.NewLine;
+                            File.AppendAllText("C://backup//backup_log.txt", _log);
                             using (SqlCommand insertCommand = new SqlCommand(insertQuery, destinationConnection))
                             {
                                 insertCommand.Parameters.AddWithValue("@Value2", row["in_dt"]);

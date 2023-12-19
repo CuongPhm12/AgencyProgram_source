@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AgencyProgram.exe" size="15328">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="AgencyProgram.exe" size="16864">
       <assemblyIdentity name="AgencyProgram" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Ke2iB6iSsw2qacOH3b1EVRyg3ruX5AtGqeHK4TbkxIM=</dsig:DigestValue>
+        <dsig:DigestValue>KpcAmz3P1T7YKPatq36l0AcEMeIvKdesaeqN3JO01ps=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
