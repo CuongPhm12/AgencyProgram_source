@@ -23,7 +23,7 @@ namespace New_Pro
         {
             // Source database connection string
             string sourceConnectionString;
-            sourceConnectionString = @"Data Source=211.46.110.210,5398;Initial Catalog=DZICUBE;User ID=dzicube;Password=icbVL110%!2!)";
+            sourceConnectionString = @"Data Source=101.250.201.10,5398;Initial Catalog=DZICUBE;User ID=dzicube;Password=ejwhs123$";
             // Destination database connection string
             string destinationConnectionString;
             destinationConnectionString = @"Data Source=101.250.201.10;Initial Catalog=simbiz;User ID=sa;Password=tlaqlwm2174";
